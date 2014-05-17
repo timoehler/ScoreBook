@@ -17,12 +17,16 @@
 	<Grid>
 		<StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
 			<ItemsControl
-				  ItemsSource="{Binding Books, UpdateSourceTrigger=PropertyChanged}" 
+				  ItemsSource="{Binding Books, Mode=OneWay}" 
 				  ItemTemplate="{StaticResource libraryItemTemplate}" Background="Gray"/>		
 			<StackPanel Orientation="Horizontal">
 				<Button Content="New Scorebook" Click="ButtonNewScorebook_Click"/>
 				<Button Content="How to Keep Score" Click="ButtonIntro_Click"/>
 			</StackPanel>
+			<Button Content="Delete Entire Library" Click="ButtonDelete_Click"/>
+			<Button Content="Load Sample Data" Click="ButtonLoadSample_Click"/>
+			<Button Content="Save To Disk" Click="ButtonSave_Click"/>
+			<Button Content="Read From Disk" Click="ButtonOpen_Click"/>
 		</StackPanel>
 	</Grid>
 </UserControl>

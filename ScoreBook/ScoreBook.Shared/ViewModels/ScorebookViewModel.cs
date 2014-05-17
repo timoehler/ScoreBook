@@ -12,5 +12,7 @@ namespace ScoreBook.ViewModels
 		{
 			_scorebook = scorebook;
 		}
+
+		public List<Scorecard> Cards { get { return _scorebook.GetAllScorecards(); } }
 	}
 }

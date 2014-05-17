@@ -8,17 +8,17 @@ namespace ScoreBook.ViewModels
 {
 	public class HomeViewModel : PropertyChangedViewModel
 	{
-		public List<Scorebook> Books
-		{
-			get 
-			{ 
-				var b = TopLevelViewModel.Instance.Library.GetAllBooks();
-				return b;
-			}
-		}
+		public List<Scorebook> Books { get; private set; }
 		public HomeViewModel()
 		{
-			NotifyPropertyChanged();
+			Refresh();
+		}
+
+		public void Refresh()
+		{
+			Books = new List<Scorebook>();
+			Books.AddRange(TopLevelViewModel.Instance.Library.GetAllBooks());
+			NotifyPropertyChanged("Books");
 		}
 	}
 }

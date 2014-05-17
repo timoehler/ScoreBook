@@ -50,6 +50,7 @@ namespace ScoreBook
 		public void NavigateToHome()
 		{
 			CurrentView = _homeView;
+			((HomeViewModel)_homeView.DataContext).Refresh();
 		}
 
 		public void NavigateToView(UserControl view)
@@ -57,6 +58,17 @@ namespace ScoreBook
 			CurrentView = view;
 		}
 
+		public void ClearLibrary()
+		{
+			Library = new ScorebookLibrary();
+			NotifyPropertyChanged("Library");
+		}
+
+		public void SetLibrary(ScorebookLibrary library)
+		{
+			Library = library;
+			NotifyPropertyChanged("Library");
+		}
 
 	}
 }

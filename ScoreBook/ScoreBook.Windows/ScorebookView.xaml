@@ -8,8 +8,18 @@
 	mc:Ignorable="d"
 	d:DesignHeight="300"
 	d:DesignWidth="400">
-	
+	<UserControl.Resources>
+		<DataTemplate x:Key="scorecardItemTemplate">
+			<Button Content="{Binding Title}" Click="ButtonCurrentScorecard_Click"/>
+		</DataTemplate>
+	</UserControl.Resources>
 	<Grid>
-
+		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+			<Button Content="Home" Click="ButtonHome_Click"/>
+			<ItemsControl
+				  ItemsSource="{Binding Cards, UpdateSourceTrigger=PropertyChanged}" 
+				  ItemTemplate="{StaticResource scorecardItemTemplate}" Background="Gray"/>
+			<Button Content="Add New" Click="ButtonAdd_Click"/>
+		</StackPanel>
 	</Grid>
 </UserControl>
