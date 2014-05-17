@@ -104,6 +104,14 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <ProjectReference Include="..\..\..\Models\Models.csproj">
+      <Project>{535c3b9e-a7e5-4789-af24-331d856a9482}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GlobalResources\GlobalResources.csproj">
+      <Project>{3f29cb5a-a0e5-4138-891e-a8c6787e3135}</Project>
+      <Name>GlobalResources</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AtBatPageView.xaml.cs">

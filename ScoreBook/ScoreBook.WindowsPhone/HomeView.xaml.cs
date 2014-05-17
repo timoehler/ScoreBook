@@ -17,26 +17,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace ScoreBook
 {
-	public sealed partial class ScorecardView : UserControl
+	public sealed partial class HomeView : UserControl
 	{
-		public ScorecardView()
+		public HomeView()
 		{
 			this.InitializeComponent();
-		}
-
-		private void ButtonHome_Click(object sender, RoutedEventArgs e)
-		{
-			TopLevelViewModel.Instance.NavigateToHome();
-		}
-
-		private void ButtonScorebook_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-		private void ButtonEdit_Click(object sender, RoutedEventArgs e)
-		{
-
 		}
 	}
 }

@@ -23,5 +23,7 @@ namespace ScoreBook
 		{
 			this.InitializeComponent();
 		}
+
+
 	}
 }

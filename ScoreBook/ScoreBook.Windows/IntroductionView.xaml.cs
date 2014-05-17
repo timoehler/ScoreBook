@@ -23,5 +23,10 @@ namespace ScoreBook
 		{
 			this.InitializeComponent();
 		}
+
+		private void ButtonHome_Click(object sender, RoutedEventArgs e)
+		{
+			TopLevelViewModel.Instance.NavigateToHome();
+		}
 	}
 }
