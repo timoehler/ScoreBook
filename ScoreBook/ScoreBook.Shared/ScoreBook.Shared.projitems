@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ab6132fa-00f0-490c-b9da-f985cf3224f2</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ScoreBook</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AtBatPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AtBatViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HomeViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IntroductionViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewScorebookViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ScorebookViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ScorecardViewModel.cs" />
+  </ItemGroup>
+</Project>
