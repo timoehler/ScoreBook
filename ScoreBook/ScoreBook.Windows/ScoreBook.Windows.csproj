@@ -117,9 +117,6 @@
     <Compile Include="AtBatPageView.xaml.cs">
       <DependentUpon>AtBatPageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AtBatView.xaml.cs">
-      <DependentUpon>AtBatView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
@@ -154,10 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="AtBatPageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AtBatView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Models;
+using ScoreBook.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -37,6 +39,15 @@ namespace ScoreBook
 		private void ButtonEdit_Click(object sender, RoutedEventArgs e)
 		{
 
+		}
+
+		private void ButtonCell_Click(object sender, RoutedEventArgs e)
+		{
+			var atBat = (AtBat)((Button)sender).DataContext;
+
+			var view = new AtBatPageView();
+			view.DataContext = new AtBatPageViewModel(atBat);
+			TopLevelViewModel.Instance.NavigateToView(view);
 		}
 	}
 }
