@@ -15,6 +15,9 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ScoringWidgetView.xaml.cs">
+      <DependentUpon>ScoringWidgetView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)TopLevelView.xaml.cs">
       <DependentUpon>TopLevelView.xaml</DependentUpon>
     </Compile>
@@ -28,6 +31,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ScorecardViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)ScoringWidgetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)TopLevelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

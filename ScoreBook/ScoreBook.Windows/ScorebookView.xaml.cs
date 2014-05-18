@@ -38,7 +38,7 @@ namespace ScoreBook
 		private void ButtonCurrentScorecard_Click(object sender, RoutedEventArgs e)
 		{
 			var vm = (ScorebookViewModel)this.DataContext;
-			var card = vm.Cards.Where(c => c.Team == (string)((Button)sender).Content).FirstOrDefault();
+			var card = vm.Cards.Where(c => c.Title == (string)((Button)sender).Content).FirstOrDefault();
 			if (card != null)
 			{
 				var view = new ScorecardView();

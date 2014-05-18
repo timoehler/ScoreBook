@@ -8,16 +8,90 @@
 	mc:Ignorable="d"
 	d:DesignHeight="300"
 	d:DesignWidth="400">
-	
-	<Grid>
-		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+	<UserControl.Resources>
+		<DataTemplate x:Key="DataTemplate_Level2">
+			<Button Height="75" Width="75" Margin="-4" Padding="0">
+				<Button.Content>
+					<Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+						<local:ScoringWidgetView/>
+					</Viewbox>					
+				</Button.Content>
+			</Button>
+		</DataTemplate>
+
+		<DataTemplate x:Key="DataTemplate_Level1">
+			
+			<ItemsControl ItemsSource="{Binding AtBats}" ItemTemplate="{StaticResource DataTemplate_Level2}">
+				<ItemsControl.ItemsPanel>
+					<ItemsPanelTemplate>
+						<StackPanel Orientation="Horizontal"/>
+					</ItemsPanelTemplate>
+				</ItemsControl.ItemsPanel>
+			</ItemsControl>
+		</DataTemplate>
+
+		<DataTemplate x:Key="DataTemplate_Jersey">
+			<Button Height="75" Width="40" Margin="-4" Padding="0" Content="{Binding Number}"/>
+		</DataTemplate>
+
+		<DataTemplate x:Key="DataTemplate_Name">
+			<Button Height="75" Width="225" Margin="-4" Padding="0" Content="{Binding Name}"/>
+		</DataTemplate>
+
+		<DataTemplate x:Key="DataTemplate_Position">
+			<Button Height="75" Width="40" Margin="-4" Padding="0" Content="{Binding Position}"/>
+		</DataTemplate>
+		
+	</UserControl.Resources>
+
+	<Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<StackPanel Grid.Row="0"  VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,50">
 			<Button Content="Home" Click="ButtonHome_Click"/>
 			<Button Content="Back To Scorebook" Click="ButtonScorebook_Click"/>
-			<TextBlock Text="Scorecard!"/>
-			<TextBox Text="Home Team"/>
-			<TextBox Text="Visitor Team"/>
-			<TextBox Text="Date"/>
-			<Button Content="Edit" Click="ButtonEdit_Click" IsEnabled="False"/>
+			<TextBlock Text="Home"/>
+			<TextBox Text="{Binding HomeTeam}"/>
+			<TextBlock Text="Visitor"/>
+			<TextBox Text="{Binding AwayTeam}"/>
+			<TextBlock Text="Date"/>
+			<TextBox Text="{Binding Date}"/>		
 		</StackPanel>
+		<Grid Grid.Row="1">
+			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+				<StackPanel Orientation="Horizontal">
+					<Button Width="40" Height="30" Content="#" Margin="-4" Padding="0" IsEnabled="False"/>
+					<Button Width="225" Height="30" Content="Name" Margin="-4" Padding="0" IsEnabled="False"/>
+					<Button Width="40" Height="30" Content="Pos." Margin="-4" Padding="0" IsEnabled="False"/>
+					<Button Width="75" Height="30" Content="1" Margin="-4" Padding="0" IsEnabled="False"/>
+					<Button Width="75" Height="30" Content="2" Margin="-4" Padding="0" IsEnabled="False"/>
+					<Button Width="75" Height="30" Content="3" Margin="-4" Padding="0" IsEnabled="False"/>
+					<Button Width="75" Height="30" Content="4" Margin="-4" Padding="0" IsEnabled="False"/>
+					<Button Width="75" Height="30" Content="5" Margin="-4" Padding="0" IsEnabled="False"/>
+					<Button Width="75" Height="30" Content="6" Margin="-4" Padding="0" IsEnabled="False"/>
+					<Button Width="75" Height="30" Content="7" Margin="-4" Padding="0" IsEnabled="False"/>
+					<Button Width="75" Height="30" Content="8" Margin="-4" Padding="0" IsEnabled="False"/>
+					<Button Width="75" Height="30" Content="9" Margin="-4" Padding="0" IsEnabled="False"/>
+				</StackPanel>
+				<StackPanel Orientation="Horizontal">
+					<ItemsControl
+						ItemsSource="{Binding Players, Mode=TwoWay}" 
+						ItemTemplate="{StaticResource DataTemplate_Jersey}"/>
+					<ItemsControl
+						ItemsSource="{Binding Players, Mode=TwoWay}" 
+						ItemTemplate="{StaticResource DataTemplate_Name}"/>
+					<ItemsControl
+						ItemsSource="{Binding Players, Mode=TwoWay}" 
+						ItemTemplate="{StaticResource DataTemplate_Position}"/>
+					<ItemsControl
+						ItemsSource="{Binding Players, Mode=TwoWay}" 
+						ItemTemplate="{StaticResource DataTemplate_Level1}"/>
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+		<Button Grid.Row="2" HorizontalAlignment="Center" Content="Edit" Click="ButtonEdit_Click" IsEnabled="False"/>
 	</Grid>
 </UserControl>

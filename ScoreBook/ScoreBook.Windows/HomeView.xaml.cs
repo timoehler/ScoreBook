@@ -89,6 +89,37 @@ namespace ScoreBook
 			s4.Score = "12 - 4";
 			s4.Opponent = "St Louis Cardinals";
 			s4.Location = "Away";
+			s4.Players[0].Name = "Carlos Gomez";
+			s4.Players[0].Number = "27";
+			s4.Players[0].Position = "CF";
+			s4.Players[1].Name = "Scooter Gennett";
+			s4.Players[1].Number = "2";
+			s4.Players[1].Position = "2B";
+			s4.Players[2].Name = "Ryan Braun";
+			s4.Players[2].Number = "8";
+			s4.Players[2].Position = "RF";
+			s4.Players[3].Name = "Aramis Ramirez";
+			s4.Players[3].Number = "16";
+			s4.Players[3].Position = "3B";
+			s4.Players[4].Name = "Jonathan Lucroy";
+			s4.Players[4].Number = "20";
+			s4.Players[4].Position = "C";
+			s4.Players[5].Name = "Mark Reynolds";
+			s4.Players[5].Number = "7";
+			s4.Players[5].Position = "1B";
+			s4.Players[6].Name = "Khris Davis";
+			s4.Players[6].Number = "18";
+			s4.Players[6].Position = "LF";
+			s4.Players[7].Name = "Jean Segura";
+			s4.Players[7].Number = "9";
+			s4.Players[7].Position = "SS";
+			s4.Players[8].Name = "Wily Peralta";
+			s4.Players[8].Number = "38";
+			s4.Players[8].Position = "P";
+		
+
+
+
 			book2.AddScorecard(s4);
 			TopLevelViewModel.Instance.Library.AddBook(book2);
 
@@ -106,7 +137,7 @@ namespace ScoreBook
 			serializer.WriteObject(sessionData, library);
 
 
-			StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync("ScorecardSavedData.xml");
+			StorageFile file = await ApplicationData.Current.LocalFolder.CreateFileAsync("ScorecardSavedData.xml", CreationCollisionOption.ReplaceExisting);
 			using (Stream fileStream = await file.OpenStreamForWriteAsync())
 			{
 				sessionData.Seek(0, SeekOrigin.Begin);

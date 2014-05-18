@@ -10,19 +10,21 @@
 	d:DesignWidth="400">
 	<UserControl.Resources>
 		<DataTemplate x:Key="libraryItemTemplate">
-			<Button Content="{Binding Title}" Click="ButtonCurrentScorecard_Click"/>
+			<Button Content="{Binding Title}" Click="ButtonCurrentScorecard_Click" HorizontalAlignment="Center"/>
 		</DataTemplate>
 	</UserControl.Resources>
 	
 	<Grid>
 		<StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
+			<TextBlock Text="Scorebook Library:" Foreground="White" HorizontalAlignment="Center"/>
 			<ItemsControl
 				  ItemsSource="{Binding Books, Mode=OneWay}" 
 				  ItemTemplate="{StaticResource libraryItemTemplate}" Background="Gray"/>		
-			<StackPanel Orientation="Horizontal">
+			<StackPanel Orientation="Horizontal" Margin="0,100,0,0">
 				<Button Content="New Scorebook" Click="ButtonNewScorebook_Click"/>
 				<Button Content="How to Keep Score" Click="ButtonIntro_Click"/>
 			</StackPanel>
+			<TextBlock Margin="0,200,0,0" Text="Debugging Tools"/>
 			<Button Content="Delete Entire Library" Click="ButtonDelete_Click"/>
 			<Button Content="Load Sample Data" Click="ButtonLoadSample_Click"/>
 			<Button Content="Save To Disk" Click="ButtonSave_Click"/>
