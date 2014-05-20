@@ -10,10 +10,29 @@
 	Height="600">
 	
 	<Grid>
+		<StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
+			<StackPanel Orientation="Horizontal">
+				<ToggleButton Content="B" Width="45" Height="45" Padding="0" Margin="-4" IsChecked="{Binding BallOne, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+				<ToggleButton Content="B" Width="45" Height="45" Padding="0" Margin="-4" IsChecked="{Binding BallTwo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+				<ToggleButton Content="B" Width="45" Height="45" Padding="0" Margin="-4" IsChecked="{Binding BallThree, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			</StackPanel>
+			<StackPanel Orientation="Horizontal">
+				<ToggleButton Content="S" Width="45" Height="45" Padding="0" Margin="-4" IsChecked="{Binding StrikeOne, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+				<ToggleButton Content="S" Width="45" Height="45" Padding="0" Margin="-4" IsChecked="{Binding StrikeTwo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			</StackPanel>
+		</StackPanel>
 		<Rectangle Width="250" Height="250" Fill="Transparent" Stroke="White" StrokeThickness="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,60">
 			<Rectangle.RenderTransform>
 				<RotateTransform Angle="-45" CenterX="125" CenterY="125"/>
 			</Rectangle.RenderTransform>
 		</Rectangle>
+		<StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+			<ToggleButton Content="1B" Padding="0" Height="45" Width="125"/>
+			<ToggleButton Content="2B" Padding="0" Height="45" Width="125"/>
+			<ToggleButton Content="3B" Padding="0" Height="45" Width="125"/>
+			<ToggleButton Content="HR" Padding="0" Height="45" Width="125"/>
+			<ToggleButton Content="BB" Padding="0" Height="45" Width="125"/>
+			<ToggleButton Content="HBP" Padding="0" Height="45" Width="125"/>
+		</StackPanel>
 	</Grid>
 </UserControl>

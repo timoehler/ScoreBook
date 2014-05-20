@@ -12,7 +12,7 @@
     <Grid>
 		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
 			<Button Content="Back"/>
-			<local:ScoringWidgetView Width="600" Height="600"/>
+			<local:ScoringWidgetView Width="600" Height="600" DataContext="{Binding ScoringWidgetViewModel}"/>
 		</StackPanel>
 	</Grid>
 </UserControl>
