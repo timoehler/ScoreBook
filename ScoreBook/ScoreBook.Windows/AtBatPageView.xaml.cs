@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using ScoreBook.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,6 +23,12 @@ namespace ScoreBook
 		public AtBatPageView()
 		{
 			this.InitializeComponent();
+		}
+
+		private void ButtonBack_Click(object sender, RoutedEventArgs e)
+		{
+			var vm = DataContext as ScoringWidgetViewModel;
+			vm.GoBack();
 		}
 	}
 }

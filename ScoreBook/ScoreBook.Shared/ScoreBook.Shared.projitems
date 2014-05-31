@@ -22,7 +22,6 @@
       <DependentUpon>TopLevelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)TopLevelViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\AtBatPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\HomeViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\IntroductionViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewScorebookViewModel.cs" />

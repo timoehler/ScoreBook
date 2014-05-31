@@ -4,15 +4,35 @@ using System.Text;
 using GlobalResources;
 using Models;
 using Windows.Foundation;
+using Windows.UI.Xaml.Controls;
 
 namespace ScoreBook.ViewModels
 {
 	public class ScoringWidgetViewModel : PropertyChangedViewModel
 	{
 		private AtBat _atBat;
-		public ScoringWidgetViewModel(AtBat atBat)
+		private UserControl _backView;
+		public ScoringWidgetViewModel(AtBat atBat, UserControl backView)
 		{
 			_atBat = atBat;
+			_backView = backView;
+			LoadFromModel();
+			RefreshControls();
+		}
+
+		private void LoadFromModel()
+		{
+			_strikeOne = _atBat.StrikeOne;
+			_strikeTwo = _atBat.StrikeTwo;
+			_ballOne = _atBat.BallOne;
+			_ballTwo = _atBat.BallTwo;
+			_ballThree = _atBat.BallThree;
+			_single = _atBat.Single;
+			_double = _atBat.Double;
+			_triple = _atBat.Triple;
+			_homeRun = _atBat.HomeRun;
+			_baseOnBalls = _atBat.BaseOnBalls;
+			_hitByPitch = _atBat.HitByPitch;
 		}
 
 		public Point HitPoint { get; set; }
@@ -27,9 +47,15 @@ namespace ScoreBook.ViewModels
 			get { return _strikeOne; }
 			set
 			{
+				if (_strikeOne == value)
+				{
+					return;
+				}
 				_strikeOne = value;
+				_atBat.StrikeOne = value;
 				_strikeTwo = false;
-				RefreshBallsAndStrikes();
+				_atBat.StrikeTwo = false;
+				RefreshControls();
 			}
 		}
 
@@ -39,9 +65,15 @@ namespace ScoreBook.ViewModels
 			get { return _strikeTwo; }
 			set
 			{
+				if (_strikeTwo == value)
+				{ 
+					return;
+				}
 				_strikeOne = true;
+				_atBat.StrikeOne = true;
 				_strikeTwo = value;
-				RefreshBallsAndStrikes();
+				_atBat.StrikeTwo = value;
+				RefreshControls();
 			}
 		}
 
@@ -51,10 +83,17 @@ namespace ScoreBook.ViewModels
 			get { return _ballOne; }
 			set
 			{
+				if (_ballOne == value)
+				{
+					return;
+				}
 				_ballOne = value;
+				_atBat.BallOne = value;
 				_ballTwo = false;
+				_atBat.BallTwo = false;
 				_ballThree = false;
-				RefreshBallsAndStrikes();
+				_atBat.BallThree = false;
+				RefreshControls();
 			}
 		}
 
@@ -64,10 +103,17 @@ namespace ScoreBook.ViewModels
 			get { return _ballTwo; }
 			set
 			{
+				if (_ballTwo == value)
+				{
+					return;
+				}
 				_ballOne = true;
+				_atBat.BallOne = true;
 				_ballTwo = value;
+				_atBat.BallTwo = value;
 				_ballThree = false;
-				RefreshBallsAndStrikes();
+				_atBat.BallThree = false;
+				RefreshControls();
 			}
 		}
 
@@ -77,57 +123,152 @@ namespace ScoreBook.ViewModels
 			get { return _ballThree; }
 			set
 			{
+				if (_ballThree == value)
+				{
+					return;
+				}
 				_ballOne = true;
+				_atBat.BallOne = true;
 				_ballTwo = true;
+				_atBat.BallTwo = true;
 				_ballThree = value;
-				RefreshBallsAndStrikes();
+				_atBat.BallThree = value;
+				RefreshControls();
 			}
 		}
 
-		private void RefreshBallsAndStrikes()
+		#endregion
+
+		#region Hit Types
+
+		private bool _single;
+		public bool Single
 		{
-			NotifyPropertyChanged("BallOne");
-			NotifyPropertyChanged("BallTwo");
-			NotifyPropertyChanged("BallThree");
-			NotifyPropertyChanged("StrikeOne");
-			NotifyPropertyChanged("StrikeTwo");
+			get { return _single; }
+			set
+			{
+				ClearOtherHitTypes(AtBatEvent.Single);
+				_single = value;
+				_atBat.Single = value;
+				RefreshControls();
+			}
+		}
+
+		private bool _double;
+		public bool Double
+		{
+			get { return _double; }
+			set
+			{
+				ClearOtherHitTypes(AtBatEvent.Double);
+				_double = value;
+				_atBat.Double = value;
+				RefreshControls();
+			}
+		}
+
+		private bool _triple;
+		public bool Triple
+		{
+			get { return _triple; }
+			set
+			{
+				ClearOtherHitTypes(AtBatEvent.Triple);
+				_triple = value;
+				_atBat.Triple = value;
+				RefreshControls();
+			}
+		}
+
+		private bool _homeRun;
+		public bool HomeRun
+		{
+			get { return _homeRun; }
+			set
+			{
+				ClearOtherHitTypes(AtBatEvent.HomeRun);
+				_homeRun = value;
+				_atBat.HomeRun = value;
+				RefreshControls();
+			}
+		}
+
+		private bool _baseOnBalls;
+		public bool BaseOnBalls
+		{
+			get { return _baseOnBalls; }
+			set
+			{
+				ClearOtherHitTypes(AtBatEvent.BaseOnBalls);
+				_baseOnBalls = value;
+				_atBat.BaseOnBalls = value;
+				RefreshControls();
+			}
+		}
+
+		private bool _hitByPitch;
+		public bool HitByPitch
+		{
+			get { return _hitByPitch; }
+			set
+			{
+				ClearOtherHitTypes(AtBatEvent.HitByPitch);
+				_hitByPitch = value;
+				_atBat.HitByPitch = value;
+				RefreshControls();
+			}
+		}
+
+		private void ClearOtherHitTypes(AtBatEvent atBatEvent)
+		{
+			if (atBatEvent != AtBatEvent.Single)
+			{
+				_single = false;
+				_atBat.Single = false;
+			}
+			if (atBatEvent != AtBatEvent.Double)
+			{
+				_double = false;
+				_atBat.Double = false;
+			}
+			if (atBatEvent != AtBatEvent.Triple)
+			{
+				_triple = false;
+				_atBat.Triple = false;
+			}
+			if (atBatEvent != AtBatEvent.HomeRun)
+			{
+				_homeRun = false;
+				_atBat.HomeRun = false;
+			}
+			if (atBatEvent != AtBatEvent.BaseOnBalls)
+			{
+				_baseOnBalls = false;
+				_atBat.BaseOnBalls = false;
+			}
+			if (atBatEvent != AtBatEvent.HitByPitch)
+			{
+				_hitByPitch = false;
+				_atBat.HitByPitch = false;
+			}
 		}
 
 		#endregion
 
 		public int RBIs { get; set; }
-		public AtBatEvent Outcome { get; set; }
+
 		public OutType Out { get; set; }
+
+		private void RefreshControls()
+		{
+			NotifyPropertyChanged("");
+		}
+
+		public void GoBack()
+		{
+			TopLevelViewModel.Instance.NavigateToView(_backView);
+		}
 	}
 
-	public enum Base
-	{
-		First,
-		Second,
-		Third,
-		Home,
-		NotApplicable,
-	}
-
-	public enum AtBatEvent
-	{
-		Single,
-		Double,
-		Triple,
-		HomeRun,
-		BaseOnBalls,
-		HitByPitch,
-		StrikeOutLooking,
-		StrikeoutSwinging,
-		SacFly,
-		OutInPlay
-	}
-
-	public enum OutType
-	{
-		NotOut,
-		First,
-		Second, 
-		Third	
-	}
+	
 }

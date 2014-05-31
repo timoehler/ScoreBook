@@ -11,8 +11,23 @@
     
     <Grid>
 		<StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-			<Button Content="Back"/>
-			<local:ScoringWidgetView Width="600" Height="600" DataContext="{Binding ScoringWidgetViewModel}"/>
+			<Button Content="Back" Click="ButtonBack_Click"/>
+			<local:ScoringWidgetView Width="600" Height="600" DataContext="{Binding}"/>
+			<StackPanel Orientation="Horizontal">
+				<StackPanel VerticalAlignment="Center">
+					<Button Content="+"/>
+					<Button Content="-"/>
+				</StackPanel>
+				<TextBlock Text="RBI Count" VerticalAlignment="Center"/>
+				<ToggleButton Content="Out" VerticalAlignment="Center"/>
+				<StackPanel>
+					<ToggleButton Content="Strikeout Looking"/>
+					<ToggleButton Content="Strikeout Swinging"/>
+					<ToggleButton Content="Caught Stealing"/>
+					<ToggleButton Content="In Play"/>
+				</StackPanel>
+				<ToggleButton Content="Place Hit"/>
+			</StackPanel>
 		</StackPanel>
 	</Grid>
 </UserControl>

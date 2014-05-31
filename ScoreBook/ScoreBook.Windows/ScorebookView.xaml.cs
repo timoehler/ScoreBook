@@ -42,7 +42,8 @@ namespace ScoreBook
 			if (card != null)
 			{
 				var view = new ScorecardView();
-				view.DataContext = new ScorecardViewModel(card);
+				var vm2 = new ScorecardViewModel(card, view);
+				view.DataContext = vm2;
 				TopLevelViewModel.Instance.NavigateToView(view);
 			}
 		}

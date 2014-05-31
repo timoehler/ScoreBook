@@ -43,10 +43,10 @@ namespace ScoreBook
 
 		private void ButtonCell_Click(object sender, RoutedEventArgs e)
 		{
-			var atBat = (AtBat)((Button)sender).DataContext;
+			var vm = (ScoringWidgetViewModel)((Button)sender).DataContext;
 
 			var view = new AtBatPageView();
-			view.DataContext = new AtBatPageViewModel(atBat);
+			view.DataContext = vm;
 			TopLevelViewModel.Instance.NavigateToView(view);
 		}
 	}

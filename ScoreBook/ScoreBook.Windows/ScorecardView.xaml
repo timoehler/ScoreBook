@@ -13,7 +13,7 @@
 			<Button Height="75" Width="75" Margin="-4" Padding="0" Click="ButtonCell_Click" DataContext="{Binding}">
 				<Button.Content>
 					<Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-						<local:ScoringWidgetView/>
+						<local:ScoringWidgetView DataContext="{Binding}"/>
 					</Viewbox>					
 				</Button.Content>
 			</Button>
@@ -21,7 +21,7 @@
 
 		<DataTemplate x:Key="DataTemplate_Level1">
 			
-			<ItemsControl ItemsSource="{Binding AtBats}" ItemTemplate="{StaticResource DataTemplate_Level2}">
+			<ItemsControl ItemsSource="{Binding AtBatsViewModel}" ItemTemplate="{StaticResource DataTemplate_Level2}">
 				<ItemsControl.ItemsPanel>
 					<ItemsPanelTemplate>
 						<StackPanel Orientation="Horizontal"/>
@@ -78,16 +78,16 @@
 				</StackPanel>
 				<StackPanel Orientation="Horizontal">
 					<ItemsControl
-						ItemsSource="{Binding Players, Mode=TwoWay}" 
+						ItemsSource="{Binding PlayersViewModel, Mode=TwoWay}" 
 						ItemTemplate="{StaticResource DataTemplate_Jersey}"/>
 					<ItemsControl
-						ItemsSource="{Binding Players, Mode=TwoWay}" 
+						ItemsSource="{Binding PlayersViewModel, Mode=TwoWay}" 
 						ItemTemplate="{StaticResource DataTemplate_Name}"/>
 					<ItemsControl
-						ItemsSource="{Binding Players, Mode=TwoWay}" 
+						ItemsSource="{Binding PlayersViewModel, Mode=TwoWay}" 
 						ItemTemplate="{StaticResource DataTemplate_Position}"/>
 					<ItemsControl
-						ItemsSource="{Binding Players, Mode=TwoWay}" 
+						ItemsSource="{Binding PlayersViewModel, Mode=TwoWay}" 
 						ItemTemplate="{StaticResource DataTemplate_Level1}"/>
 				</StackPanel>
 			</StackPanel>

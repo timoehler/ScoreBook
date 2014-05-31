@@ -27,12 +27,12 @@
 			</Rectangle.RenderTransform>
 		</Rectangle>
 		<StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
-			<ToggleButton Content="1B" Padding="0" Height="45" Width="125"/>
-			<ToggleButton Content="2B" Padding="0" Height="45" Width="125"/>
-			<ToggleButton Content="3B" Padding="0" Height="45" Width="125"/>
-			<ToggleButton Content="HR" Padding="0" Height="45" Width="125"/>
-			<ToggleButton Content="BB" Padding="0" Height="45" Width="125"/>
-			<ToggleButton Content="HBP" Padding="0" Height="45" Width="125"/>
+			<ToggleButton Content="1B" Padding="0" Height="45" Width="125" IsChecked="{Binding Single, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			<ToggleButton Content="2B" Padding="0" Height="45" Width="125" IsChecked="{Binding Double, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			<ToggleButton Content="3B" Padding="0" Height="45" Width="125" IsChecked="{Binding Triple, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			<ToggleButton Content="HR" Padding="0" Height="45" Width="125" IsChecked="{Binding HomeRun, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			<ToggleButton Content="BB" Padding="0" Height="45" Width="125" IsChecked="{Binding BaseOnBalls, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+			<ToggleButton Content="HBP" Padding="0" Height="45" Width="125" IsChecked="{Binding HitByPitch, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 		</StackPanel>
 	</Grid>
 </UserControl>
