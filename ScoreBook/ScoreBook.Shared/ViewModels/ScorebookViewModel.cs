@@ -14,6 +14,8 @@ namespace ScoreBook.ViewModels
 			_scorebook = scorebook;
 		}
 
+		List<ScorecardViewModel> ScorecardViewModels { get; set; }
+
 		public List<Scorecard> Cards { get { return _scorebook.GetAllScorecards(); } }
 	}
 }

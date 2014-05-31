@@ -56,6 +56,7 @@ namespace ScoreBook.ViewModels
 				_strikeTwo = false;
 				_atBat.StrikeTwo = false;
 				RefreshControls();
+				var book = TopLevelViewModel.Instance.Library.GetBook("Milwaukee Brewers 2014 Season");
 			}
 		}
 
