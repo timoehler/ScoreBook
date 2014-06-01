@@ -7,6 +7,7 @@ using Windows.UI.Xaml.Controls;
 using GlobalResources;
 using Models;
 using ScoreBook.ViewModels;
+using Windows.UI.Xaml;
 
 namespace ScoreBook
 {
@@ -16,6 +17,7 @@ namespace ScoreBook
 		public ScorebookLibrary Library { get; private set; }
 		private TopLevelViewModel()
 		{
+			MessageVisibility = Visibility.Collapsed;
 		}
 
 		private static TopLevelViewModel _instance;
@@ -47,6 +49,27 @@ namespace ScoreBook
 			}
 		}
 
+		private Visibility _messageVisibility;
+		public Visibility MessageVisibility
+		{
+			get { return _messageVisibility; }
+			set
+			{
+				_messageVisibility = value;
+				NotifyPropertyChanged();
+			}
+		}
+		private UserControl _messageView;
+		public UserControl MessageView
+		{
+			get { return _messageView; }
+			set
+			{
+				_messageView = value;
+				NotifyPropertyChanged();
+			}
+		}
+
 		public void NavigateToHome()
 		{
 			CurrentView = _homeView;
@@ -56,6 +79,17 @@ namespace ScoreBook
 		public void NavigateToView(UserControl view)
 		{
 			CurrentView = view;
+		}
+
+		public void ShowMessage(UserControl view)
+		{
+			MessageView = view;
+			MessageVisibility = Visibility.Visible;
+		}
+
+		public void HideMessage()
+		{
+			MessageVisibility = Visibility.Collapsed;
 		}
 
 		public void ClearLibrary()

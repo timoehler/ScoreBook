@@ -37,10 +37,13 @@ namespace ScoreBook.ViewModels
 		public List<PlayersViewModel> PlayersViewModel { get; set; }
 	}
 
-	public class PlayersViewModel
+	public class PlayersViewModel : PropertyChangedViewModel
 	{
+		Player _player;
 		public PlayersViewModel(UserControl view, Player player)
 		{
+			_player = player;
+
 			AtBatsViewModel = new List<ScoringWidgetViewModel>();
 			AtBatsViewModel.Add(new ScoringWidgetViewModel(player.AtBats[0], view));
 			AtBatsViewModel.Add(new ScoringWidgetViewModel(player.AtBats[1], view));
@@ -53,5 +56,35 @@ namespace ScoreBook.ViewModels
 			AtBatsViewModel.Add(new ScoringWidgetViewModel(player.AtBats[8], view));
 		}
 		public List<ScoringWidgetViewModel> AtBatsViewModel { get; set; }
+
+		public string Name
+		{
+			get { return _player.Name; }
+			set 
+			{ 
+				_player.Name = value; 
+				NotifyPropertyChanged();
+			}
+		}
+
+		public string Number
+		{
+			get { return _player.Number; }
+			set
+			{
+				_player.Number = value;
+				NotifyPropertyChanged();
+			}
+		}
+
+		public string Position
+		{
+			get { return _player.Position; }
+			set
+			{
+				_player.Position = value;
+				NotifyPropertyChanged();
+			}
+		}
 	}
 }

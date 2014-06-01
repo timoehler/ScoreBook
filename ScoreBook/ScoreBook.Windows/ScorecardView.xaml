@@ -31,15 +31,15 @@
 		</DataTemplate>
 
 		<DataTemplate x:Key="DataTemplate_Jersey">
-			<Button Height="75" Width="40" Margin="-4" Padding="0" Content="{Binding Number}"/>
+			<Button Height="75" Width="40" Margin="-4" Padding="0" Content="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Click="ButtonNumber_Click"/>
 		</DataTemplate>
 
 		<DataTemplate x:Key="DataTemplate_Name">
-			<Button Height="75" Width="225" Margin="-4" Padding="0" Content="{Binding Name}"/>
+			<Button Height="75" Width="225" Margin="-4" Padding="0" Content="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Click="ButtonName_Click"/>
 		</DataTemplate>
 
 		<DataTemplate x:Key="DataTemplate_Position">
-			<Button Height="75" Width="40" Margin="-4" Padding="0" Content="{Binding Position}"/>
+			<Button Height="75" Width="40" Margin="-4" Padding="0" Content="{Binding Position, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Click="ButtonPosition_Click"/>
 		</DataTemplate>
 		
 	</UserControl.Resources>

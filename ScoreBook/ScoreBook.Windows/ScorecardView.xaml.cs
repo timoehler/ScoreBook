@@ -49,5 +49,41 @@ namespace ScoreBook
 			view.DataContext = vm;
 			TopLevelViewModel.Instance.NavigateToView(view);
 		}
+
+		private void ButtonName_Click(object sender, RoutedEventArgs e)
+		{
+			var button = sender as Button;
+			var view = new MessageBoxView();
+			var viewModel = new MessageBoxViewModel();
+			viewModel.Text = "Please enter the player name:";
+			viewModel.Result = (string)button.Content;
+			viewModel.OnOk = new Action(() => button.Content = viewModel.Result);
+			view.DataContext = viewModel;
+			TopLevelViewModel.Instance.ShowMessage(view);	
+		}
+
+		private void ButtonNumber_Click(object sender, RoutedEventArgs e)
+		{
+			var button = sender as Button;
+			var view = new MessageBoxView();
+			var viewModel = new MessageBoxViewModel();
+			viewModel.Text = "Please enter the player number:";
+			viewModel.Result = (string)button.Content;
+			viewModel.OnOk = new Action(() => button.Content = viewModel.Result);
+			view.DataContext = viewModel;
+			TopLevelViewModel.Instance.ShowMessage(view);
+		}
+
+		private void ButtonPosition_Click(object sender, RoutedEventArgs e)
+		{
+			var button = sender as Button;
+			var view = new MessageBoxView();
+			var viewModel = new MessageBoxViewModel();
+			viewModel.Text = "Please enter the player position:";
+			viewModel.Result = (string)button.Content;
+			viewModel.OnOk = new Action(() => button.Content = viewModel.Result);
+			view.DataContext = viewModel;
+			TopLevelViewModel.Instance.ShowMessage(view);
+		}
 	}
 }

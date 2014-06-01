@@ -9,5 +9,7 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 		<UserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding CurrentView}"/>
+		<Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="#80808080" Visibility="{Binding MessageVisibility}"/>
+		<UserControl HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding MessageVisibility}" Content="{Binding MessageView}"/>
     </Grid>
 </Page>
