@@ -44,18 +44,18 @@ namespace ScoreBook.ViewModels
 		{
 			_player = player;
 
-			AtBatsViewModel = new List<ScoringWidgetViewModel>();
-			AtBatsViewModel.Add(new ScoringWidgetViewModel(player.AtBats[0], view));
-			AtBatsViewModel.Add(new ScoringWidgetViewModel(player.AtBats[1], view));
-			AtBatsViewModel.Add(new ScoringWidgetViewModel(player.AtBats[2], view));
-			AtBatsViewModel.Add(new ScoringWidgetViewModel(player.AtBats[3], view));
-			AtBatsViewModel.Add(new ScoringWidgetViewModel(player.AtBats[4], view));
-			AtBatsViewModel.Add(new ScoringWidgetViewModel(player.AtBats[5], view));
-			AtBatsViewModel.Add(new ScoringWidgetViewModel(player.AtBats[6], view));
-			AtBatsViewModel.Add(new ScoringWidgetViewModel(player.AtBats[7], view));
-			AtBatsViewModel.Add(new ScoringWidgetViewModel(player.AtBats[8], view));
+			AtBatsViewModel = new List<ScoreCellViewModel>();
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[0], view));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[1], view));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[2], view));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[3], view));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[4], view));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[5], view));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[6], view));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[7], view));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[8], view));
 		}
-		public List<ScoringWidgetViewModel> AtBatsViewModel { get; set; }
+		public List<ScoreCellViewModel> AtBatsViewModel { get; set; }
 
 		public string Name
 		{

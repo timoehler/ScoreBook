@@ -27,7 +27,7 @@ namespace ScoreBook
 
 		private void ButtonBack_Click(object sender, RoutedEventArgs e)
 		{
-			var vm = DataContext as ScoringWidgetViewModel;
+			var vm = DataContext as ScoreCellViewModel;
 			vm.GoBack();
 		}
 	}

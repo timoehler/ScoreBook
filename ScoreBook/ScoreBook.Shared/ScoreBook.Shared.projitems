@@ -19,8 +19,8 @@
       <DependentUpon>MessageBoxView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)MessageBoxViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ScoringWidgetView.xaml.cs">
-      <DependentUpon>ScoringWidgetView.xaml</DependentUpon>
+    <Compile Include="$(MSBuildThisFileDirectory)ScoreCellView.xaml.cs">
+      <DependentUpon>ScoreCellView.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)TopLevelView.xaml.cs">
       <DependentUpon>TopLevelView.xaml</DependentUpon>
@@ -31,14 +31,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\NewScorebookViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ScorebookViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ScorecardViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ScoringWidgetViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\ScoreCellViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="$(MSBuildThisFileDirectory)MessageBoxView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)ScoringWidgetView.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)ScoreCellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -8,11 +8,11 @@ using Windows.UI.Xaml.Controls;
 
 namespace ScoreBook.ViewModels
 {
-	public class ScoringWidgetViewModel : PropertyChangedViewModel
+	public class ScoreCellViewModel : PropertyChangedViewModel
 	{
 		private AtBat _atBat;
 		private UserControl _backView;
-		public ScoringWidgetViewModel(AtBat atBat, UserControl backView)
+		public ScoreCellViewModel(AtBat atBat, UserControl backView)
 		{
 			_atBat = atBat;
 			_backView = backView;
@@ -56,7 +56,6 @@ namespace ScoreBook.ViewModels
 				_strikeTwo = false;
 				_atBat.StrikeTwo = false;
 				RefreshControls();
-				var book = TopLevelViewModel.Instance.Library.GetBook("Milwaukee Brewers 2014 Season");
 			}
 		}
 
@@ -269,6 +268,9 @@ namespace ScoreBook.ViewModels
 		{
 			TopLevelViewModel.Instance.NavigateToView(_backView);
 		}
+
+		public int Inning { get { return _atBat.Inning; } }
+		public int BattingOrder { get { return _atBat.BattingOrder; } }
 	}
 
 	

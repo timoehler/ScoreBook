@@ -19,11 +19,11 @@ using Windows.UI.Xaml.Navigation;
 
 namespace ScoreBook
 {
-    public sealed partial class ScoringWidgetView : UserControl
-    {
-        public ScoringWidgetView()
-        {
-            this.InitializeComponent();
-        }
-    }
+	public sealed partial class ScoreCellView : UserControl
+	{
+		public ScoreCellView()
+		{
+			this.InitializeComponent();
+		}
+	}
 }

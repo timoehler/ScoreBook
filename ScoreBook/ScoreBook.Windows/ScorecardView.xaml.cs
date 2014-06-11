@@ -43,11 +43,28 @@ namespace ScoreBook
 
 		private void ButtonCell_Click(object sender, RoutedEventArgs e)
 		{
-			var vm = (ScoringWidgetViewModel)((Button)sender).DataContext;
+			var vm = (ScoreCellViewModel)((Button)sender).DataContext;
+			var button = sender as Button;
 
-			var view = new AtBatPageView();
-			view.DataContext = vm;
-			TopLevelViewModel.Instance.NavigateToView(view);
+			var size = Math.Min(_scrollViewer.ActualHeight, _scrollViewer.ActualWidth);
+			float zoomFactor = (float)(size / (1.25 * (button.ActualWidth + button.Margin.Right + button.Margin.Left)));
+
+			
+			var x = (_buttonName.ActualWidth + _buttonName.Margin.Left + _buttonName.Margin.Right +
+				_buttonNumber.ActualWidth + _buttonNumber.Margin.Left + _buttonNumber.Margin.Right +
+				_buttonPos.ActualWidth + _buttonPos.Margin.Left + _buttonPos.Margin.Right) * zoomFactor;
+			var y = (_buttonName.ActualHeight + _buttonName.Margin.Top + _buttonName.Margin.Bottom) * zoomFactor;
+
+			
+
+
+			x += (vm.Inning - 1) * (button.ActualWidth + button.Margin.Left + button.Margin.Right) * zoomFactor;
+			y += (vm.BattingOrder - 1) * (button.ActualHeight + button.Margin.Top + button.Margin.Bottom) * zoomFactor;
+
+			var offsetY = ((_scrollViewer.ActualHeight - (button.Height + button.Margin.Top + button.Margin.Bottom) * zoomFactor) / 2);
+			var offsetX = ((_scrollViewer.ActualWidth - (button.Width + button.Margin.Left + button.Margin.Right) * zoomFactor) / 2);
+			// TODO.  divide by two and shift half a square over
+			_scrollViewer.ChangeView(x - offsetX, y - offsetY, zoomFactor);
 		}
 
 		private void ButtonName_Click(object sender, RoutedEventArgs e)

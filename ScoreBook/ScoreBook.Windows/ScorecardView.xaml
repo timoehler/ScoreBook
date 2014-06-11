@@ -7,13 +7,14 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
 	d:DesignHeight="300"
-	d:DesignWidth="400">
+	d:DesignWidth="400"
+	UseLayoutRounding="True">
 	<UserControl.Resources>
 		<DataTemplate x:Key="DataTemplate_Level2">
 			<Button Height="75" Width="75" Margin="-4" Padding="0" Click="ButtonCell_Click" DataContext="{Binding}">
 				<Button.Content>
 					<Viewbox HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-						<local:ScoringWidgetView DataContext="{Binding}"/>
+						<local:ScoreCellView DataContext="{Binding}"/>
 					</Viewbox>					
 				</Button.Content>
 			</Button>
@@ -60,38 +61,51 @@
 			<TextBlock Text="Date"/>
 			<TextBox Text="{Binding Date}"/>		
 		</StackPanel>
-		<Grid Grid.Row="1">
-			<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
-				<StackPanel Orientation="Horizontal">
-					<Button Width="40" Height="30" Content="#" Margin="-4" Padding="0" IsEnabled="False"/>
-					<Button Width="225" Height="30" Content="Name" Margin="-4" Padding="0" IsEnabled="False"/>
-					<Button Width="40" Height="30" Content="Pos." Margin="-4" Padding="0" IsEnabled="False"/>
-					<Button Width="75" Height="30" Content="1" Margin="-4" Padding="0" IsEnabled="False"/>
-					<Button Width="75" Height="30" Content="2" Margin="-4" Padding="0" IsEnabled="False"/>
-					<Button Width="75" Height="30" Content="3" Margin="-4" Padding="0" IsEnabled="False"/>
-					<Button Width="75" Height="30" Content="4" Margin="-4" Padding="0" IsEnabled="False"/>
-					<Button Width="75" Height="30" Content="5" Margin="-4" Padding="0" IsEnabled="False"/>
-					<Button Width="75" Height="30" Content="6" Margin="-4" Padding="0" IsEnabled="False"/>
-					<Button Width="75" Height="30" Content="7" Margin="-4" Padding="0" IsEnabled="False"/>
-					<Button Width="75" Height="30" Content="8" Margin="-4" Padding="0" IsEnabled="False"/>
-					<Button Width="75" Height="30" Content="9" Margin="-4" Padding="0" IsEnabled="False"/>
+		<Border Grid.Row="1" BorderBrush="Gray" BorderThickness="1" Padding="10" x:Name="_border">
+			<ScrollViewer 
+				HorizontalScrollMode="Auto" 
+				HorizontalScrollBarVisibility="Auto" 
+				VerticalScrollMode="Auto"
+				VerticalScrollBarVisibility="Auto"
+				HorizontalSnapPointsAlignment="Center" 
+				HorizontalAlignment="Stretch" 
+				MaxZoomFactor="100" 
+				MinZoomFactor="1" 
+				ZoomMode="Enabled"  
+				ManipulationMode="All"
+				x:Name="_scrollViewer">
+				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" x:Name="_stackPanel">
+					<StackPanel Orientation="Horizontal">
+						<Button Width="40" Height="30" Content="#" Margin="-4" Padding="0" IsEnabled="False" x:Name="_buttonNumber"/>
+						<Button Width="225" Height="30" Content="Name" Margin="-4" Padding="0" IsEnabled="False" x:Name="_buttonName"/>
+						<Button Width="40" Height="30" Content="Pos." Margin="-4" Padding="0" IsEnabled="False" x:Name="_buttonPos"/>
+						<Button Width="75" Height="30" Content="1" Margin="-4" Padding="0" IsEnabled="False"/>
+						<Button Width="75" Height="30" Content="2" Margin="-4" Padding="0" IsEnabled="False"/>
+						<Button Width="75" Height="30" Content="3" Margin="-4" Padding="0" IsEnabled="False"/>
+						<Button Width="75" Height="30" Content="4" Margin="-4" Padding="0" IsEnabled="False"/>
+						<Button Width="75" Height="30" Content="5" Margin="-4" Padding="0" IsEnabled="False"/>
+						<Button Width="75" Height="30" Content="6" Margin="-4" Padding="0" IsEnabled="False"/>
+						<Button Width="75" Height="30" Content="7" Margin="-4" Padding="0" IsEnabled="False"/>
+						<Button Width="75" Height="30" Content="8" Margin="-4" Padding="0" IsEnabled="False"/>
+						<Button Width="75" Height="30" Content="9" Margin="-4" Padding="0" IsEnabled="False"/>
+					</StackPanel>
+					<StackPanel Orientation="Horizontal">
+						<ItemsControl
+							ItemsSource="{Binding PlayersViewModel, Mode=TwoWay}" 
+							ItemTemplate="{StaticResource DataTemplate_Jersey}"/>
+						<ItemsControl
+							ItemsSource="{Binding PlayersViewModel, Mode=TwoWay}" 
+							ItemTemplate="{StaticResource DataTemplate_Name}"/>
+						<ItemsControl
+							ItemsSource="{Binding PlayersViewModel, Mode=TwoWay}" 
+							ItemTemplate="{StaticResource DataTemplate_Position}"/>
+						<ItemsControl
+							ItemsSource="{Binding PlayersViewModel, Mode=TwoWay}" 
+							ItemTemplate="{StaticResource DataTemplate_Level1}"/>
+					</StackPanel>
 				</StackPanel>
-				<StackPanel Orientation="Horizontal">
-					<ItemsControl
-						ItemsSource="{Binding PlayersViewModel, Mode=TwoWay}" 
-						ItemTemplate="{StaticResource DataTemplate_Jersey}"/>
-					<ItemsControl
-						ItemsSource="{Binding PlayersViewModel, Mode=TwoWay}" 
-						ItemTemplate="{StaticResource DataTemplate_Name}"/>
-					<ItemsControl
-						ItemsSource="{Binding PlayersViewModel, Mode=TwoWay}" 
-						ItemTemplate="{StaticResource DataTemplate_Position}"/>
-					<ItemsControl
-						ItemsSource="{Binding PlayersViewModel, Mode=TwoWay}" 
-						ItemTemplate="{StaticResource DataTemplate_Level1}"/>
-				</StackPanel>
-			</StackPanel>
-		</Grid>
-		<Button Grid.Row="2" HorizontalAlignment="Center" Content="Edit" Click="ButtonEdit_Click" IsEnabled="False"/>
+			</ScrollViewer>
+		</Border>
+
 	</Grid>
 </UserControl>
