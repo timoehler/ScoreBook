@@ -43,7 +43,11 @@ namespace ScoreBook
 
 		private void ButtonCell_Click(object sender, RoutedEventArgs e)
 		{
+			var scorecardVM = this.DataContext as ScorecardViewModel;
+			scorecardVM.FireCellViewChanged();
+
 			var vm = (ScoreCellViewModel)((Button)sender).DataContext;
+			vm.IsEditable = true;
 			var button = sender as Button;
 
 			var size = Math.Min(_scrollViewer.ActualHeight, _scrollViewer.ActualWidth);
@@ -63,8 +67,18 @@ namespace ScoreBook
 
 			var offsetY = ((_scrollViewer.ActualHeight - (button.Height + button.Margin.Top + button.Margin.Bottom) * zoomFactor) / 2);
 			var offsetX = ((_scrollViewer.ActualWidth - (button.Width + button.Margin.Left + button.Margin.Right) * zoomFactor) / 2);
-			// TODO.  divide by two and shift half a square over
-			_scrollViewer.ChangeView(x - offsetX, y - offsetY, zoomFactor);
+
+			var period = TimeSpan.FromMilliseconds(10);
+			Windows.System.Threading.ThreadPoolTimer.CreateTimer(async (source) =>
+			{
+				await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+				{
+					_scrollViewer.ChangeView(x - offsetX, y - offsetY, zoomFactor);
+				});
+			}, period);
+
+
+			//_scrollViewer.ChangeView(x - offsetX, y - offsetY, zoomFactor);
 		}
 
 		private void ButtonName_Click(object sender, RoutedEventArgs e)
@@ -101,6 +115,18 @@ namespace ScoreBook
 			viewModel.OnOk = new Action(() => button.Content = viewModel.Result);
 			view.DataContext = viewModel;
 			TopLevelViewModel.Instance.ShowMessage(view);
+		}
+
+
+
+		private void _scrollViewer_ViewChanged(object sender, ScrollViewerViewChangedEventArgs e)
+		{
+			var x = sender as ScrollViewer;
+			if (x.VerticalOffset != 0)
+			{
+				// TODO.  This is a mess.  Figure out some way to find the element in the center
+				return;
+			}
 		}
 	}
 }

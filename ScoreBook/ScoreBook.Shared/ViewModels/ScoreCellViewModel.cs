@@ -12,12 +12,21 @@ namespace ScoreBook.ViewModels
 	{
 		private AtBat _atBat;
 		private UserControl _backView;
-		public ScoreCellViewModel(AtBat atBat, UserControl backView)
+		ScorecardViewModel _scorecardViewModel;
+		public ScoreCellViewModel(AtBat atBat, UserControl backView, ScorecardViewModel scorecardViewModel)
 		{
 			_atBat = atBat;
 			_backView = backView;
 			LoadFromModel();
 			RefreshControls();
+			_scorecardViewModel = scorecardViewModel;
+
+			scorecardViewModel.CellViewChanged += scorecardViewModel_CellViewChanged;
+		}
+
+		void scorecardViewModel_CellViewChanged(object sender, EventArgs e)
+		{
+			IsEditable = false;
 		}
 
 		private void LoadFromModel()
@@ -36,7 +45,17 @@ namespace ScoreBook.ViewModels
 		}
 
 		public Point HitPoint { get; set; }
-		public Base FurthestBase { get; set; }
+		private Base _furthestBase = Base.NotApplicable;
+		public Base FurthestBase
+		{
+			get { return _furthestBase; }
+			set
+			{
+				_furthestBase = value;
+				NotifyPropertyChanged();
+			}
+		}
+
 		public Base CaughtStealing { get; set; }
 
 		#region Balls and Strikes
@@ -219,6 +238,21 @@ namespace ScoreBook.ViewModels
 			}
 		}
 
+		public string Text
+		{
+			get
+			{
+				if (Single) return "1B";
+				if (Double) return "2B";
+				if (Triple) return "3B";
+				if (HomeRun) return "HR";
+				if (BaseOnBalls) return "BB";
+				if (HitByPitch) return "HBP";
+
+				return string.Empty;
+			}
+		}
+
 		private void ClearOtherHitTypes(AtBatEvent atBatEvent)
 		{
 			if (atBatEvent != AtBatEvent.Single)
@@ -271,6 +305,17 @@ namespace ScoreBook.ViewModels
 
 		public int Inning { get { return _atBat.Inning; } }
 		public int BattingOrder { get { return _atBat.BattingOrder; } }
+
+		private bool _isEditable;
+		public bool IsEditable
+		{
+			get { return _isEditable; }
+			set
+			{
+				_isEditable = value;
+				NotifyPropertyChanged();
+			}
+		}
 	}
 
 	

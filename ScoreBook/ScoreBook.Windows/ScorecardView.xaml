@@ -73,6 +73,7 @@
 				MinZoomFactor="1" 
 				ZoomMode="Enabled"  
 				ManipulationMode="All"
+				ViewChanged="_scrollViewer_ViewChanged"
 				x:Name="_scrollViewer">
 				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical" x:Name="_stackPanel">
 					<StackPanel Orientation="Horizontal">

@@ -18,20 +18,30 @@ namespace ScoreBook.ViewModels
 			Date = DateTime.Now.ToString("MM/dd/yyyy");
 			NotifyPropertyChanged("Players");
 			PlayersViewModel = new List<PlayersViewModel>();
-			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[0]));
-			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[1]));
-			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[2]));
-			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[3]));
-			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[4]));
-			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[5]));
-			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[6]));
-			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[7]));
-			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[8]));
+			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[0], this));
+			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[1], this));
+			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[2], this));
+			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[3], this));
+			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[4], this));
+			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[5], this));
+			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[6], this));
+			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[7], this));
+			PlayersViewModel.Add(new PlayersViewModel(backView, scorecard.Players[8], this));
 		}
 
 		public string HomeTeam { get; set; }
 		public string AwayTeam { get; set; }
 		public string Date { get; set; }
+
+		public event EventHandler CellViewChanged;
+
+		public void FireCellViewChanged()
+		{
+			if (CellViewChanged != null)
+			{
+				CellViewChanged(this, null);
+			}
+		}
 
 
 		public List<PlayersViewModel> PlayersViewModel { get; set; }
@@ -40,20 +50,20 @@ namespace ScoreBook.ViewModels
 	public class PlayersViewModel : PropertyChangedViewModel
 	{
 		Player _player;
-		public PlayersViewModel(UserControl view, Player player)
+		public PlayersViewModel(UserControl view, Player player, ScorecardViewModel scorecardViewModel)
 		{
 			_player = player;
 
 			AtBatsViewModel = new List<ScoreCellViewModel>();
-			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[0], view));
-			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[1], view));
-			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[2], view));
-			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[3], view));
-			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[4], view));
-			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[5], view));
-			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[6], view));
-			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[7], view));
-			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[8], view));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[0], view, scorecardViewModel));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[1], view, scorecardViewModel));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[2], view, scorecardViewModel));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[3], view, scorecardViewModel));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[4], view, scorecardViewModel));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[5], view, scorecardViewModel));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[6], view, scorecardViewModel));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[7], view, scorecardViewModel));
+			AtBatsViewModel.Add(new ScoreCellViewModel(player.AtBats[8], view, scorecardViewModel));
 		}
 		public List<ScoreCellViewModel> AtBatsViewModel { get; set; }
 
