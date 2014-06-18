@@ -6,8 +6,22 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+	<Page.Resources>
+		<Style TargetType="TextBlock">
+			<Style.Setters>
+				<Setter Property="Foreground" Value="#FF585955"/>
+			</Style.Setters>
+		</Style>
+		<Style TargetType="Button">
+			<Style.Setters>
+				<Setter Property="BorderThickness" Value="1"/>
+			</Style.Setters>
+		</Style>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+	</Page.Resources>
+
+	<Grid Background="#FFF0DFDD">
 		<UserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding CurrentView}"/>
 		<Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="#80808080" Visibility="{Binding MessageVisibility}"/>
 		<UserControl HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding MessageVisibility}" Content="{Binding MessageView}"/>

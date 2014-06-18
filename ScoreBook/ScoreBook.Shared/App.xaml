@@ -1,7 +1,22 @@
 ﻿<Application
-    x:Class="ScoreBook.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ScoreBook">
+	x:Class="ScoreBook.App"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="using:ScoreBook">
 
+	<Application.Resources>
+
+		<SolidColorBrush x:Key="ButtonBackgroundThemeBrush" Color="White" />
+		<SolidColorBrush x:Key="ButtonBorderThemeBrush" Color="#FF595A5B" />
+		<SolidColorBrush x:Key="ButtonDisabledBackgroundThemeBrush" Color="White" />
+		<SolidColorBrush x:Key="ButtonDisabledBorderThemeBrush" Color="#FF595A5B" />
+		<SolidColorBrush x:Key="ButtonDisabledForegroundThemeBrush" Color="#FF585955" />
+		<SolidColorBrush x:Key="ButtonForegroundThemeBrush" Color="#FF585955" />
+		<SolidColorBrush x:Key="ButtonPointerOverBackgroundThemeBrush" Color="#FF84BAC2" />
+		<SolidColorBrush x:Key="ButtonPointerOverForegroundThemeBrush" Color="White" />
+		<SolidColorBrush x:Key="ButtonPressedBackgroundThemeBrush" Color="#FFF2A355" />
+		<SolidColorBrush x:Key="ButtonPressedForegroundThemeBrush" Color="White" />
+		
+	</Application.Resources>
+	
 </Application>

@@ -9,26 +9,121 @@
 	d:DesignHeight="300"
 	d:DesignWidth="400">
 	<UserControl.Resources>
+		<BitmapImage x:Key="MyImageSource" UriSource="../Assets/BookLogo.png" />
+		
 		<DataTemplate x:Key="libraryItemTemplate">
-			<Button Content="{Binding Title}" Click="ButtonCurrentScorecard_Click" HorizontalAlignment="Center"/>
+			<Button 
+				Tag="{Binding Title}"
+				Click="ButtonCurrentScorecard_Click" 
+				HorizontalAlignment="Center"
+				Width="200"
+				Height="225"
+				Background="Transparent"
+				BorderThickness="0">
+				<Button.Content>
+					<StackPanel>
+						<Border 
+							Width="125" 
+							Height="150" 
+							Background="#FF01A127" 
+							HorizontalAlignment="Center" 
+							VerticalAlignment="Top" 
+							Margin="10" 
+							CornerRadius="1,5,5,1" 
+							BorderBrush="DarkGray" 
+							BorderThickness="0.5,1,1.5,1.5">
+							<StackPanel>
+								<TextBlock Text="ScoreBook" FontSize="14" FontFamily="Segoe Script" HorizontalAlignment="Center" Margin="10" Foreground="White"/>
+								<Image Source="{StaticResource MyImageSource}" Width="90" Height="90" HorizontalAlignment="Center"/>
+							</StackPanel>
+						</Border>
+						<TextBlock 
+							Text="{Binding Title}" 
+							HorizontalAlignment="Center" 
+							Margin="5" 
+							MaxWidth="190" 
+							MaxHeight="60"
+							TextWrapping="WrapWholeWords"
+							TextTrimming="CharacterEllipsis" 
+							FontSize="12"/>
+					</StackPanel>
+				</Button.Content>
+			</Button>
 		</DataTemplate>
 	</UserControl.Resources>
 	
 	<Grid>
-		<StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center">
-			<TextBlock Text="Scorebook Library:" Foreground="White" HorizontalAlignment="Center"/>
-			<ItemsControl
-				  ItemsSource="{Binding Books, Mode=OneWay}" 
-				  ItemTemplate="{StaticResource libraryItemTemplate}" Background="Gray"/>		
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="4*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<TextBlock Text="ScoreBook" FontSize="67" Grid.Column="1" Margin="0,10,0,-5"/>
+		<Rectangle Fill="#FF84BAC2" HorizontalAlignment="Stretch" Height="2" Grid.Row="1" Grid.ColumnSpan="3"/>
+		<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center">
+			<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Margin="0,0,10,0">
+				<ItemsControl
+					  ItemsSource="{Binding Books, Mode=OneWay}" 
+					  ItemTemplate="{StaticResource libraryItemTemplate}" Background="Gray">
+					<ItemsControl.ItemsPanel>
+						<ItemsPanelTemplate>
+							<VirtualizingStackPanel Orientation="Horizontal"/>
+						</ItemsPanelTemplate>
+					</ItemsControl.ItemsPanel>
+				</ItemsControl>
+			</ScrollViewer>
+			<Button 
+				Click="ButtonNewScorebook_Click" 
+				Width="200"
+				Height="225"
+				Background="Transparent"
+				BorderThickness="0">
+				<Button.Content>
+					<StackPanel>
+						<Border 
+							Width="125" 
+							Height="150" 
+							Background="White" 
+							BorderBrush="#FF595A5B"
+							BorderThickness="4"
+							HorizontalAlignment="Center" 
+							VerticalAlignment="Top" 
+							Margin="10" 
+							CornerRadius="5">
+							<TextBlock Text="+" Margin="0,0,0,25" FontSize="100" FontFamily="Segoe UI" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#FF595A5B"/>
+						</Border>
+						<TextBlock 
+							Text="Add New Scorebook" 
+							HorizontalAlignment="Center" 
+							Margin="5" 
+							MaxWidth="190" 
+							MaxHeight="60"
+							TextWrapping="WrapWholeWords"
+							TextTrimming="CharacterEllipsis" 
+							FontSize="12"/>
+					</StackPanel>
+				</Button.Content>
+				
+			</Button>
+		</StackPanel>
+		<StackPanel Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+			
 			<StackPanel Orientation="Horizontal" Margin="0,100,0,0">
-				<Button Content="New Scorebook" Click="ButtonNewScorebook_Click"/>
 				<Button Content="How to Keep Score" Click="ButtonIntro_Click"/>
 			</StackPanel>
-			<TextBlock Margin="0,200,0,0" Text="Debugging Tools"/>
-			<Button Content="Delete Entire Library" Click="ButtonDelete_Click"/>
-			<Button Content="Load Sample Data" Click="ButtonLoadSample_Click"/>
-			<Button Content="Save To Disk" Click="ButtonSave_Click"/>
-			<Button Content="Read From Disk" Click="ButtonOpen_Click"/>
+			<StackPanel Visibility="Collapsed">
+				<TextBlock Margin="0,200,0,0" Text="Debugging Tools"/>
+				<Button Content="Delete Entire Library" Click="ButtonDelete_Click"/>
+				<Button Content="Load Sample Data" Click="ButtonLoadSample_Click"/>
+				<Button Content="Save To Disk" Click="ButtonSave_Click"/>
+				<Button Content="Read From Disk" Click="ButtonOpen_Click"/>
+			</StackPanel>
 		</StackPanel>
 	</Grid>
 </UserControl>

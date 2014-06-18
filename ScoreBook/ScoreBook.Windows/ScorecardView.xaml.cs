@@ -36,11 +36,6 @@ namespace ScoreBook
 
 		}
 
-		private void ButtonEdit_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
-
 		private void ButtonCell_Click(object sender, RoutedEventArgs e)
 		{
 			var scorecardVM = this.DataContext as ScorecardViewModel;

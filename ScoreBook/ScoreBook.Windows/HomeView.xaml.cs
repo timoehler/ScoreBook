@@ -46,7 +46,7 @@ namespace ScoreBook
 
 		private void ButtonCurrentScorecard_Click(object sender, RoutedEventArgs e)
 		{
-			string name = (string)((Button)sender).Content;
+			string name = (string)((Button)sender).Tag;
 			var book = TopLevelViewModel.Instance.Library.GetBook(name);
 
 			var view = new ScorebookView();
