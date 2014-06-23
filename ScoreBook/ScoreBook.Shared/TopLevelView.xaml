@@ -21,9 +21,24 @@
 
 	</Page.Resources>
 
-	<Grid Background="#FFF0DFDD">
-		<UserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding CurrentView}"/>
-		<Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Fill="#80808080" Visibility="{Binding MessageVisibility}"/>
-		<UserControl HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding MessageVisibility}" Content="{Binding MessageView}"/>
-    </Grid>
+	<Grid VerticalAlignment="Stretch" Background="#FFF0DFDD">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="Auto"/>
+			<ColumnDefinition Width="4*"/>
+		</Grid.ColumnDefinitions>
+		<Button Content="Back" VerticalAlignment="Center" Margin="10,10,0,0" Click="ButtonBack_Click"/>
+		<TextBlock Text="ScoreBook" FontSize="67" Grid.Row="0" Grid.Column="1" Margin="0,10,0,-5"/>
+		<Button Content="Home" Grid.ColumnSpan="3" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Center" Click="ButtonHome_Click"/>
+ 		<Rectangle Fill="#FF84BAC2" HorizontalAlignment="Stretch" Grid.Row="1" Grid.ColumnSpan="3" Height="2"/>
+		<UserControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="2" Grid.ColumnSpan="3" Content="{Binding CurrentView}"/>
+		<Rectangle HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.RowSpan="3" Grid.ColumnSpan="3" Fill="#80808080" Visibility="{Binding MessageVisibility}"/>
+		<UserControl HorizontalAlignment="Center" VerticalAlignment="Center" Grid.RowSpan="3" Grid.ColumnSpan="3" Visibility="{Binding MessageVisibility}" Content="{Binding MessageView}"/>
+	</Grid>
+
 </Page>

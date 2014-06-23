@@ -53,21 +53,15 @@
 	</UserControl.Resources>
 	
 	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="Auto"/>
-			<ColumnDefinition Width="4*"/>
-		</Grid.ColumnDefinitions>
 		<Grid.RowDefinitions>
+			<RowDefinition Height="4*"/>
 			<RowDefinition Height="Auto"/>
 			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
+			<RowDefinition Height="5*"/>
 		</Grid.RowDefinitions>
-		<TextBlock Text="ScoreBook" FontSize="67" Grid.Column="1" Margin="0,10,0,-5"/>
-		<Rectangle Fill="#FF84BAC2" HorizontalAlignment="Stretch" Height="2" Grid.Row="1" Grid.ColumnSpan="3"/>
-		<StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Center">
-			<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden" Margin="0,0,10,0">
+		
+		<StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Center">
+			<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
 				<ItemsControl
 					  ItemsSource="{Binding Books, Mode=OneWay}" 
 					  ItemTemplate="{StaticResource libraryItemTemplate}" Background="Gray">
@@ -112,18 +106,13 @@
 				
 			</Button>
 		</StackPanel>
-		<StackPanel Grid.Row="3" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-			
-			<StackPanel Orientation="Horizontal" Margin="0,100,0,0">
-				<Button Content="How to Keep Score" Click="ButtonIntro_Click"/>
-			</StackPanel>
-			<StackPanel Visibility="Collapsed">
-				<TextBlock Margin="0,200,0,0" Text="Debugging Tools"/>
-				<Button Content="Delete Entire Library" Click="ButtonDelete_Click"/>
-				<Button Content="Load Sample Data" Click="ButtonLoadSample_Click"/>
-				<Button Content="Save To Disk" Click="ButtonSave_Click"/>
-				<Button Content="Read From Disk" Click="ButtonOpen_Click"/>
-			</StackPanel>
+		<Button Grid.Row="1" Content="How to Keep Score" Click="ButtonIntro_Click" HorizontalAlignment="Center" Margin="0,25,0,0"/>
+		<StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Collapsed">
+			<TextBlock Margin="0,200,0,0" Text="Debugging Tools"/>
+			<Button Content="Delete Entire Library" Click="ButtonDelete_Click"/>
+			<Button Content="Load Sample Data" Click="ButtonLoadSample_Click"/>
+			<Button Content="Save To Disk" Click="ButtonSave_Click"/>
+			<Button Content="Read From Disk" Click="ButtonOpen_Click"/>
 		</StackPanel>
 	</Grid>
 </UserControl>

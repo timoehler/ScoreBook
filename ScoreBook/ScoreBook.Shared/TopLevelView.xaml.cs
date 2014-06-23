@@ -30,5 +30,17 @@ namespace ScoreBook
 
 			this.DataContext = TopLevelViewModel.Instance;
         }
+
+		private void ButtonBack_Click(object sender, RoutedEventArgs e)
+		{
+			var vm = this.DataContext as TopLevelViewModel;
+			vm.GoBack();
+		}
+
+		private void ButtonHome_Click(object sender, RoutedEventArgs e)
+		{
+			var vm = this.DataContext as TopLevelViewModel;
+			vm.NavigateToHome();
+		}
     }
 }

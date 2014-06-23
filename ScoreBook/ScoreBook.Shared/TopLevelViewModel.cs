@@ -8,6 +8,7 @@ using GlobalResources;
 using Models;
 using ScoreBook.ViewModels;
 using Windows.UI.Xaml;
+using System.Linq;
 
 namespace ScoreBook
 {
@@ -19,6 +20,8 @@ namespace ScoreBook
 		{
 			MessageVisibility = Visibility.Collapsed;
 		}
+
+		private List<UserControl> _navigationHistory = new List<UserControl>();
 
 		private static TopLevelViewModel _instance;
 		public static TopLevelViewModel Instance
@@ -72,12 +75,16 @@ namespace ScoreBook
 
 		public void NavigateToHome()
 		{
-			CurrentView = _homeView;
+			NavigateToView(_homeView);
+			ClearNavigationHistory();
 			((HomeViewModel)_homeView.DataContext).Refresh();
 		}
 
-		public void NavigateToView(UserControl view)
+		public void NavigateToView(UserControl view, bool includeInHistory = true)
 		{
+			if (includeInHistory)
+				_navigationHistory.Add(CurrentView);
+
 			CurrentView = view;
 		}
 
@@ -104,5 +111,26 @@ namespace ScoreBook
 			NotifyPropertyChanged("Library");
 		}
 
+		public void GoBack()
+		{
+			if (_navigationHistory.Count == 0)
+				return;
+
+			var previous = _navigationHistory.Last();
+			_navigationHistory.Remove(previous);
+
+			if (previous == _homeView)
+				NavigateToHome();
+
+			else
+			{
+				NavigateToView(previous, false);
+			}
+		}
+
+		public void ClearNavigationHistory()
+		{
+			_navigationHistory.Clear();
+		}
 	}
 }
